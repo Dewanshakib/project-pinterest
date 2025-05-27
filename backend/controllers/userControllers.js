@@ -27,7 +27,7 @@ export const registerUser = async (req, res) => {
     const regUser = await User.create({ name, email, password: hashPassword });
 
     // generate token
-    const token = jwt.sign({ _id: regUser._id }, process.env.SECRET_KEY, {
+    const token = jwt.sign({ _id: regUser._id,name:regUser.name}, process.env.SECRET_KEY, {
       expiresIn: "15d",
     });
 
@@ -72,7 +72,7 @@ export const loginUser = async (req, res) => {
     }
 
     // generate token
-    const token = jwt.sign({ _id: user._id }, process.env.SECRET_KEY, {
+    const token = jwt.sign({ _id: user._id ,name:user.name}, process.env.SECRET_KEY, {
       expiresIn: "15d",
     });
 
