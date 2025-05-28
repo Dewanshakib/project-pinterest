@@ -27,9 +27,13 @@ export const registerUser = async (req, res) => {
     const regUser = await User.create({ name, email, password: hashPassword });
 
     // generate token
-    const token = jwt.sign({ _id: regUser._id,name:regUser.name}, process.env.SECRET_KEY, {
-      expiresIn: "15d",
-    });
+    const token = jwt.sign(
+      { _id: regUser._id, name: regUser.name },
+      process.env.SECRET_KEY,
+      {
+        expiresIn: "15d",
+      }
+    );
 
     // send cookies
     res.cookie("token", token, {
@@ -72,9 +76,13 @@ export const loginUser = async (req, res) => {
     }
 
     // generate token
-    const token = jwt.sign({ _id: user._id ,name:user.name}, process.env.SECRET_KEY, {
-      expiresIn: "15d",
-    });
+    const token = jwt.sign(
+      { _id: user._id, name: user.name },
+      process.env.SECRET_KEY,
+      {
+        expiresIn: "15d",
+      }
+    );
 
     // send cookies
     res.cookie("token", token, {
@@ -86,7 +94,7 @@ export const loginUser = async (req, res) => {
 
     return res
       .status(200)
-      .send({ message: "User Logged In successfully", token });
+      .send({ message: "User Logged In successfully", user });
   } catch (error) {
     return res.status(400).send({ error: error.message });
   }
@@ -149,15 +157,14 @@ export const followAndUnfollowUser = async (req, res) => {
   }
 };
 
-
 // logOut user
-export const logOutUser = async (req,res) => {
+export const logOutUser = async (req, res) => {
   try {
-    res.cookie("token","",{
-      maxAge:0
-    })
-    return res.status(200).send({message:"Logged Out Successfully"})
+    res.cookie("token", "", {
+      maxAge: 0,
+    });
+    return res.status(200).send({ message: "Logged Out Successfully" });
   } catch (error) {
-    return res.status(400).send({error:error.message})
+    return res.status(400).send({ error: error.message });
   }
-}
+};

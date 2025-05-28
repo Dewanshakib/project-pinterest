@@ -5,6 +5,7 @@ import { userRoutes } from "./routes/userRoutes.js";
 import { pinRoutes } from "./routes/pinRoutes.js";
 import cookieParser from "cookie-parser";
 import cloudinary from "cloudinary";
+// import cors from "cors";
 
 // cloudinary
 cloudinary.v2.config({
@@ -19,6 +20,12 @@ const PORT = process.env.PORT | 5000;
 // miidleware
 app.use(express.json());
 app.use(cookieParser());
+// app.use(
+//   cors({
+//     credentials: true,
+//     origin: "http://localhost:5173",
+//   })
+// );
 
 // user auth routes
 app.use("/api/users", userRoutes);

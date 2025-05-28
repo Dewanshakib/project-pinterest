@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+
+.common-input{
+  @apply w-full block px-3 py-2 mt-1 border border-gray-300 focus:outline-none rounded-lg shadow-sm sm:text-sm
+}
+
+.common-btn{
+  @apply w-full bg-red-600 text-white py-2 rounded-md font-semibold hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-all duration-200
+}
+
+.loading{
+  @apply inline-block w-5 h-5 rounded-full border-2 border-t-2 border-r-transparent animate-spin border-white
+}
